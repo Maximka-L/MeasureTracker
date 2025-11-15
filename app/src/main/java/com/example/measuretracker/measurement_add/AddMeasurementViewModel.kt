@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddMeasurementViewModel @Inject constructor(
-    // Можно добавить репозитории сюда
+
 ) : ViewModel() {
     // TODO: Логика для добавления измерения
 }

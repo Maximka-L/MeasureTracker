@@ -1,0 +1,21 @@
+# Android
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+captures/
+build/
+externalNativeBuild/
+
+# macOS
+.DS_Store
+.Trashes
+
+# Logs
+*.log
+
+# Others
+*.hprof

@@ -1,4 +1,9 @@
 package com.example.measuretracker.domain.use_case
 
-class GetMeasurementByIdUseCase {
+import com.example.domain.repository.MeasurementRepository
+
+class GetMeasurementsUseCase(
+    private val repository: MeasurementRepository
+) {
+    operator fun invoke() = repository.getAllMeasurements()
 }

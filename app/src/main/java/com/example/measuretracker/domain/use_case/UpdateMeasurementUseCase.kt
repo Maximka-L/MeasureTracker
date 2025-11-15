@@ -1,4 +1,11 @@
 package com.example.measuretracker.domain.use_case
 
-class UpdateMeasurementUseCase {
+import com.example.domain.model.MeasurementRecord
+import com.example.domain.repository.MeasurementRepository
+
+class UpdateMeasurementUseCase(
+    private val repository: MeasurementRepository
+) {
+    suspend operator fun invoke(record: MeasurementRecord) =
+        repository.updateMeasurement(record)
 }

@@ -1,13 +1,10 @@
 package com.example.measuretracker.domain.use_case
 
 import com.example.domain.repository.MeasurementRepository
-import com.example.domain.model.MeasurementRecord
 
-import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
-
-class GetAllMeasurementsUseCase(
+class GetMeasurementByIdUseCase(
     private val repository: MeasurementRepository
 ) {
-    operator fun invoke() = repository.getAllMeasurements()
+    suspend operator fun invoke(id: Long) =
+        repository.getMeasurementById(id)
 }

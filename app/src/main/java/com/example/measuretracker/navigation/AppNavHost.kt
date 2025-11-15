@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.measuretracker.presentation.measurement_add.AddMeasurementScreen
-import com.example.measuretracker.presentation.measurement_add.AddMeasurementViewModel
+import com.example.measuretracker.measurement_add.AddMeasurementViewModel
 import com.example.measuretracker.presentation.progress.ProgressScreen
 import com.example.measuretracker.presentation.progress.ProgressViewModel
 

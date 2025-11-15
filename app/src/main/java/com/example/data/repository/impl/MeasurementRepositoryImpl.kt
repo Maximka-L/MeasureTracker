@@ -1,31 +1,34 @@
-import androidx.compose.ui.text.font.FontVariation.weight
-import com.example.data.local.database.MeasurementEntity
+import com.example.data.local.database.MeasurementDao
+import com.example.data.mapper.toDomain
+import com.example.data.mapper.toEntity
 import com.example.domain.model.MeasurementRecord
+import com.example.domain.repository.MeasurementRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
-private fun MeasurementEntity.toDomain() = MeasurementRecord(
-    id = id,
-    weight = weight ?: 0f,
-    chest = chest ?: 0f,
-    waist = waist ?: 0f,
-    hips = hips ?: 0f,
-    leftBicep = leftBicep ?: 0f,
-    rightBicep = rightBicep ?: 0f,
-    leftThigh = leftThigh ?: 0f,
-    rightThigh = rightThigh ?: 0f,
-    note = note ?: "",
-    date = date
-)
+class MeasurementRepositoryImpl(
+    private val dao: MeasurementDao
+) : MeasurementRepository {
 
-private fun MeasurementRecord.toEntity() = MeasurementEntity(
-    id = id,
-    weight = weight!! ,
-    chest = chest,
-    waist = waist,
-    hips = hips,
-    leftBicep = leftBicep,
-    rightBicep = rightBicep,
-    leftThigh = leftThigh,
-    rightThigh = rightThigh,
-    note = note,
-    date = date
-)
+    override fun getAllMeasurements(): Flow<List<MeasurementRecord>> {
+        return dao.getAllMeasurements().map { list ->
+            list.map { it.toDomain() }
+        }
+    }
+
+    override suspend fun insertMeasurement(record: MeasurementRecord): Long {
+        return dao.insertMeasurement(record.toEntity())
+    }
+
+    override suspend fun getMeasurementById(id: Long): MeasurementRecord? {
+        return dao.getMeasurementById(id)?.toDomain()
+    }
+
+    override suspend fun deleteMeasurement(id: Long) {
+        dao.deleteMeasurement(id)
+    }
+
+    override suspend fun updateMeasurement(record: MeasurementRecord) {
+        dao.updateMeasurement(record.toEntity())
+    }
+}

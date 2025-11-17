@@ -1,7 +1,7 @@
 package com.example.measuretracker.di
 
-import MeasurementRepositoryImpl
 import com.example.data.local.database.MeasurementDao
+import com.example.data.repository.impl.MeasurementRepositoryImpl
 import com.example.domain.repository.MeasurementRepository
 import dagger.Module
 import dagger.Provides

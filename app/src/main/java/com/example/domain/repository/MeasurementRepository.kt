@@ -5,13 +5,13 @@ import kotlinx.coroutines.flow.Flow
 
 interface MeasurementRepository {
 
-    fun getAllMeasurements(): Flow<List<MeasurementRecord>>
+    suspend fun addMeasurement(record: MeasurementRecord)
 
-    suspend fun insertMeasurement(record: MeasurementRecord): Long
+    fun getAll(): Flow<List<MeasurementRecord>>
 
-    suspend fun getMeasurementById(id: Long): MeasurementRecord?
+    suspend fun deleteMeasurement(id: Int)
 
-    suspend fun deleteMeasurement(id: Long)
+    suspend fun getById(id: Int): MeasurementRecord?
 
     suspend fun updateMeasurement(record: MeasurementRecord)
 }

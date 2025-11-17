@@ -5,7 +5,7 @@ import com.example.domain.model.MeasurementRecord
 
 fun MeasurementEntity.toDomain(): MeasurementRecord =
     MeasurementRecord(
-        id = id,
+        id = id.toInt(),
         date = date,
         chest = chest,
         waist = waist,
@@ -20,7 +20,7 @@ fun MeasurementEntity.toDomain(): MeasurementRecord =
 
 fun MeasurementRecord.toEntity(): MeasurementEntity =
     MeasurementEntity(
-        id = id,
+        id = id.toLong(),
         date = date,
         chest = chest,
         waist = waist,
@@ -30,5 +30,5 @@ fun MeasurementRecord.toEntity(): MeasurementEntity =
         leftThigh = leftThigh,
         rightThigh = rightThigh,
         weight = weight,
-        note = note
+        note = note?: ""
     )

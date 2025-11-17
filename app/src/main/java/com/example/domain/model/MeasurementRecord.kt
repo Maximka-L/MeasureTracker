@@ -1,8 +1,13 @@
 package com.example.domain.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "measurement")
 data class MeasurementRecord(
-    val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val date: Long,
+    val weight: Float?,
     val chest: Float,
     val waist: Float,
     val hips: Float,
@@ -10,6 +15,5 @@ data class MeasurementRecord(
     val rightBicep: Float,
     val leftThigh: Float,
     val rightThigh: Float,
-    val weight: Float?,
-    val note: String
+    val note: String?
 )

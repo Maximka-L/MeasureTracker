@@ -1,4 +1,4 @@
-package com.example.measuretracker.presentation.progress
+package com.example.presentation.progress
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

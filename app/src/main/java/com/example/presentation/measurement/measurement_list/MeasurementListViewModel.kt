@@ -2,6 +2,7 @@ package com.example.presentation.measurement.measurement_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.measuretracker.domain.use_case.DeleteMeasurementUseCase
 import com.example.measuretracker.domain.use_case.GetMeasurementsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,15 +15,28 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MeasurementListViewModel @Inject constructor(
-    private val getMeasurementsUseCase: GetMeasurementsUseCase
+    private val getMeasurementsUseCase: GetMeasurementsUseCase,
+    private val deleteMeasurementUseCase: DeleteMeasurementUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(MeasurementListState())
+
     val state: StateFlow<MeasurementListState> = _state
 
     init {
         loadMeasurements()
     }
+
+    fun deleteMeasurement(id: Int) {
+        viewModelScope.launch {
+            try {
+                deleteMeasurementUseCase(id)
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(error = e.message)
+            }
+        }
+    }
+
 
     private fun loadMeasurements() {
         viewModelScope.launch {

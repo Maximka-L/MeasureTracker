@@ -1,10 +1,10 @@
 package com.example.measuretracker.domain.use_case
 
 import com.example.domain.repository.MeasurementRepository
+import javax.inject.Inject
 
-class GetMeasurementByIdUseCase(
+class GetMeasurementsUseCase @Inject constructor(
     private val repository: MeasurementRepository
 ) {
-    suspend operator fun invoke(id: Long) =
-        repository.getMeasurementById(id)
+    operator fun invoke() = repository.getAll()
 }
